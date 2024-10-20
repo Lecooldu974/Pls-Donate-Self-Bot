@@ -13,54 +13,38 @@ It will also server hop depending on the amount of players or if you want to set
 ## Script
 
 ```lua
--- You can change these
+-- Variables de configuration
+_G.autoUpdateGoal = true -- Met à jour automatiquement l'objectif
+_G.increaseGoalBy = 15 -- Montant d'augmentation de l'objectif
 
-_G.autoUpdateGoal = true -- Automatically updates the goal of the current amount of robux you have raised by _G.increaseGoalBy amount (i.e. you have 525 robux raised and _G.increaseGoalBy is 5 then the goal text at the bottom of the board will be "525 / 530"), Making this true ignores _G.goal
-_G.increaseGoalBy = 15 -- The Amount of which the autoUpdateGoal increase by 
-
-_G.goal = "5k!" -- the goal it will auto set at the end of the text
+_G.goal = "5k!" -- Objectif à atteindre
 _G.Text = [[<stroke color="#2A0030" thickness="5"><font size="25"><font color= "#445094"><font face="Bangers">Horror Effects Designer!</font></font></font></stroke>
-Anything Helps!
-Status: AFK
-]] -- the text before the goal text (i.e "please help me out!\n Im a upcoming game dev!!!", replace the \n with a white space )
+Tout aide est appréciée!
+Statut: AFK
+]] -- Texte avant l'objectif
 
-_G.saythanks = true 
-
--- Modification: Table pour personnaliser les messages de remerciements selon le montant
+_G.saythanks = true -- Remercie lors d'un don
 _G.customThanksText = {
-    [5] = "Thx!", -- Si le don est de 5 robux
-    [10] = "Tysm!!",
-    [50] = "Wow. Tysm!",
-    [100] = "OMG TYSM!!",
-    [500] = "OMGGGGGG TYSM!!",
+    [1] = "Merci beaucoup pour votre don de 1$!",
+    [2] = "Génial! Merci pour 2$!",
+    [5] = "Wow! Un don de 5$! Merci!",
+    [10] = "Incredible! Vous avez donné 10$!",
+    -- Ajoutez d'autres montants ici...
 }
+_G.thanksWaitTime = 5 -- Temps d'attente avant de remercier
 
-_G.defaultThanksText = "Merci pour ton don de %s robux !" -- Message par défaut si le montant n'est pas dans la table
-_G.thanksWaitTime = 5 -- in seconds, The amount of time it waits before thanking the person
+_G.beg = true -- Mendie dans le chat
+_G.begInterval = 105 -- Intervalle entre les demandes
+_G.begText = "S'il vous plaît, faites un don! Je travaille sur un nouveau jeu!" -- Texte à mendier
 
-_G.beg = true -- Begs in the chat every time the begInterval has past
-_G.begInterval = 105 -- In Seconds
-_G.begText = "Please Donate! I'm working on a new game!" -- text to beg with
+_G.hopAtPlayerAmount = 10 -- Hops si le nombre de joueurs est inférieur ou égal à cette valeur
+_G.hopInterval = 3600 -- Intervalle de temps avant de sauter (en secondes)
 
-local function getThanksText(amount)
-    -- Vérifie si un texte personnalisé existe pour le montant donné
-    for threshold, text in pairs(_G.customThanksText) do
-        if tonumber(amount) == threshold then
-            return text
-        end
-    end
-    -- Si aucun texte personnalisé n'est trouvé, utiliser le texte par défaut
-    return string.format(_G.defaultThanksText, amount)
-end
+_G.boardUpdateInterval = 0 -- Intervalle de mise à jour de l'objectif
 
-_G.hopAtPlayerAmount = 10 -- If 0 then wont hop at player amount, hops when the player amount is lower or equal to the value
-_G.hopInterval = 60 * 60 -- if 0 then wont hop after interval has passed, hops when this amount of time has past (in seconds again)
+_G.onDonateLoadString = "print('Quelqu'un a fait un don')" -- Script à exécuter lors d'un don
 
-_G.boardUpdateInterval = 0 -- as you can guess, in seconds, how fast the goal updates
+-- DONT Change! (ou fais-le si tu sais ce que tu fais)
+_G.loadstr = "https://raw.githubusercontent.com/Lecooldu974/Pls-Donate-Self-Bot/refs/heads/main/source.lua"
 
-_G.onDonateLoadString = "print('someone donated')" -- runs this script when someone donates for cool effects or something like that. Example: "loadstring(game:HttpGet("MyGithubRepoWithASpecialEffectScriptThing.lua", true))()"
-
--- DONT Change! (or do if yk what you're doing)
-_G.loadstr = "https://raw.githubusercontent.com/littlepriceonu/Pls-Donate-Self-Bot/main/source.lua"
-
-loadstring(game:HttpGet(_G.loadstr, true))()```
+loadstring(game:HttpGet(_G.loadstr, true))() -- Exécution du script principal```
