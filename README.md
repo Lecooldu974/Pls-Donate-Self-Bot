@@ -31,13 +31,33 @@ Status: AFK
 ]] -- the text before the goal text (i.e "please help me out!\n Im a upcoming game dev!!!", replace the \n with a white space )
 
 _G.saythanks = true -- Says thank you when they purchase something ("Thanks For Donating {Amount they donated}$!")
-_G.thanksText = "Thanks for donating %s$!" -- %s is the amount of robux they donated, the text to thank the person
-_G.thanksWaitTime = 5 -- in seconds, The amount of time it waits before thanking the person
 
+-- Modification: Table pour personnaliser les messages de remerciements selon le montant
+_G.customThanksText = {
+    [5] = "Merci pour les 5 robux !", -- Si le don est de 5 robux
+    [10] = "Incroyable ! 10 robux, merci beaucoup !",
+    [50] = "Waouh, 50 robux ?! T'es génial(e) !",
+    [100] = "100 robux ?! Merci infiniment pour ton immense générosité !",
+    [500] = "500 robux ?!! Un grand merci, tu es le meilleur !",
+}
+
+_G.defaultThanksText = "Merci pour ton don de %s robux !" -- Message par défaut si le montant n'est pas dans la table
+_G.thanksWaitTime = 5 -- in seconds, The amount of time it waits before thanking the person
 
 _G.beg = true -- Begs in the chat every time the begInterval has past
 _G.begInterval = 105 -- In Seconds
 _G.begText = "Please Donate! I'm working on a new game!" -- text to beg with
+
+local function getThanksText(amount)
+    -- Vérifie si un texte personnalisé existe pour le montant donné
+    for threshold, text in pairs(_G.customThanksText) do
+        if tonumber(amount) == threshold then
+            return text
+        end
+    end
+    -- Si aucun texte personnalisé n'est trouvé, utiliser le texte par défaut
+    return string.format(_G.defaultThanksText, amount)
+end
 
 _G.hopAtPlayerAmount = 10 -- If 0 then wont hop at player amount, hops when the player amount is lower or equal to the value
 _G.hopInterval = 60 * 60 -- if 0 then wont hop after interval has passed, hops when this amount of time has past (in seconds again)
@@ -49,5 +69,4 @@ _G.onDonateLoadString = "print('someone donated')" -- runs this script when some
 -- DONT Change! (or do if yk what you're doing)
 _G.loadstr = "https://raw.githubusercontent.com/littlepriceonu/Pls-Donate-Self-Bot/main/source.lua"
 
-loadstring(game:HttpGet(_G.loadstr, true))()
-```
+loadstring(game:HttpGet(_G.loadstr, true))()```
