@@ -2,7 +2,7 @@
 
 A self bot for the roblox experience Pls Donate!
 
-[The Game!](roblox.com/games/8737602449)
+[The Game!](https://www.roblox.com/games/8737602449/PLS-DONATE)
 
 Its pretty useful if you wanna afk and make some robux or something. Just look at the settings at the top of the
 
