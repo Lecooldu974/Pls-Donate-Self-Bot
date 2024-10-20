@@ -1,14 +1,8 @@
-# No longer being updated
-Updates to keep the script working will still be done.
-The pls donate self bot V2 is currently in development so updates with features will not be added anytime soon
-
 # Pls Donate! Self Bot
 
 A self bot for the roblox experience Pls Donate!
 
 [The Game!](roblox.com/games/8737602449)
-
-Btw this was written at like 4 am with bare minimum testing so if its buggy just make a issue on github and ill probably get around to fixing it
 
 Its pretty useful if you wanna afk and make some robux or something. Just look at the settings at the top of the
 
@@ -30,15 +24,15 @@ Anything Helps!
 Status: AFK
 ]] -- the text before the goal text (i.e "please help me out!\n Im a upcoming game dev!!!", replace the \n with a white space )
 
-_G.saythanks = true -- Says thank you when they purchase something ("Thanks For Donating {Amount they donated}$!")
+_G.saythanks = true 
 
 -- Modification: Table pour personnaliser les messages de remerciements selon le montant
 _G.customThanksText = {
-    [5] = "Merci pour les 5 robux !", -- Si le don est de 5 robux
-    [10] = "Incroyable ! 10 robux, merci beaucoup !",
-    [50] = "Waouh, 50 robux ?! T'es génial(e) !",
-    [100] = "100 robux ?! Merci infiniment pour ton immense générosité !",
-    [500] = "500 robux ?!! Un grand merci, tu es le meilleur !",
+    [5] = "Thx!", -- Si le don est de 5 robux
+    [10] = "Tysm!!",
+    [50] = "Wow. Tysm!",
+    [100] = "OMG TYSM!!",
+    [500] = "OMGGGGGG TYSM!!",
 }
 
 _G.defaultThanksText = "Merci pour ton don de %s robux !" -- Message par défaut si le montant n'est pas dans la table
